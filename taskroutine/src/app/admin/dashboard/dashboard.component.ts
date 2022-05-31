@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   TeamSummary:any[]=[]
   TeamMember:any=[]
   ProjectCost:number
+  todayDay:Date
 
   ngOnInit(){
     this.jobRole="Manager"
@@ -25,20 +26,26 @@ export class DashboardComponent implements OnInit {
     this.TeamMembers=4,
     this.PendingTask=4,
     this.UpcompingProject=0,
-    this.CurrentExpense=120,
-    this.FundsLeft=80
-    this.ProjectCost=200
+    this.CurrentExpense=0,
+    this.FundsLeft=0
+    this.ProjectCost=0
     this.Team=['BitByBit','SRS','Tech Phantom'];
     // this.Year=[2022,2021]
+    this.todayDay=new Date()
+
+
     for(var i=2022; i>=2021;i--)
     {
       this.Year.push(i)
     }
+
+
     this.TeamSummary=[
       {TeamName:'BitByBit',TeamCount:3,available:0},
       {TeamName:'SRS',TeamCount:3,available:0},
       {TeamName:'Tech Phantom',TeamCount:3,available:0}
     ]
+
 
     this.TeamMember=[
       {
@@ -62,8 +69,27 @@ export class DashboardComponent implements OnInit {
           {Id:3,Name:'Seemarani G',Available:'Available'},
         ] 
       },
-    ]
-    
+    ]  
+  }
+
+  ChangeProject($event: any)
+  {
+    if ($event.target.innerHTML== 'BitByBit')
+    {
+      this.ProjectCost = 200;
+      this.CurrentExpense = 150;
+      this.FundsLeft = 50;
+    } else if ($event.target.innerHTML == 'SRS')
+    {
+      this.ProjectCost = 220;
+      this.CurrentExpense = 180;
+      this.FundsLeft = 40;
+    } else if ($event.target.innerHTML == 'Tech Phantom')
+    {
+      this.ProjectCost = 300;
+      this.CurrentExpense = 150;
+      this.FundsLeft = 150;
+    } 
   }
 
 }

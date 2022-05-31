@@ -4,7 +4,7 @@
       <li class="breadcrumb-item active" aria-current="page">Dashborad</li>
     </ol>
 </nav>
-<h3 style="color: white;">DashBorad</h3>
+<h3 style="color: white;">DashBorad <span class="pull-right" style="color: black;" ><h5>{{todayDay|date:'short'}}</h5></span></h3>
 <!-- the dashboard Heading -->
 
 <!-- team Lead profile Starts Here -->
@@ -52,7 +52,7 @@
                 Team
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#" *ngFor="let team of Team">{{team}}</a>
+                <a class="dropdown-item" href="#" *ngFor="let team of Team" onclick="return false" (click)="ChangeProject($event)">{{team}}</a>
               </div>
             </div>
           </div>
@@ -84,15 +84,15 @@
                   <table class="table table-borderless">
                     <tr>
                       <td>Project Expenditure</td>
-                      <td>${{ ProjectCost }}k</td>
+                      <td>{{ ProjectCost |currency:"INR" }}</td>
                     </tr>
                     <tr>
                       <td>Current Expenditure</td>
-                      <td>₹{{ CurrentExpense }}K</td>
+                      <td>{{ CurrentExpense  |currency:"INR" }}</td>
                     </tr>
                     <tr>
                       <td>Available Funds</td>
-                      <td>${{ FundsLeft }}</td>
+                      <td>{{ FundsLeft |currency:"INR" }}</td>
                     </tr>
                   </table>
                 </div>
