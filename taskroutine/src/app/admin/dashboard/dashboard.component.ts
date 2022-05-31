@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from 'src/app/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +21,8 @@ export class DashboardComponent implements OnInit {
   ProjectCost:number
   todayDay:Date
 
+  constructor(private dashboadservice:DashboardService){}
+
   ngOnInit(){
     this.jobRole="Manager"
     this.UserName="Basu",
@@ -38,38 +41,9 @@ export class DashboardComponent implements OnInit {
     {
       this.Year.push(i)
     }
-
-
-    this.TeamSummary=[
-      {TeamName:'BitByBit',TeamCount:3,available:0},
-      {TeamName:'SRS',TeamCount:3,available:0},
-      {TeamName:'Tech Phantom',TeamCount:3,available:0}
-    ]
-
-
-    this.TeamMember=[
-      {
-        TeamName:'BitByBit',Member:[
-          {Id:1,Name:'Chetan',Available:'Available'},
-          {Id:2,Name:'Sandeep',Available:'Available'},
-          {Id:3,Name:'Thnushree',Available:'Available'},
-        ] 
-      },
-      {
-        TeamName:'SRS',Member:[
-          {Id:1,Name:'Shiledra Pal',Available:'Available'},
-          {Id:2,Name:'Ravalika',Available:'Available'},
-          {Id:3,Name:'Sadiq',Available:'Available'},
-        ] 
-      },
-      {
-        TeamName:'Tech Phantom',Member:[
-          {Id:1,Name:'Ramya Yande',Available:'Available'},
-          {Id:2,Name:'Neeraj Kumar',Available:'Available'},
-          {Id:3,Name:'Seemarani G',Available:'Available'},
-        ] 
-      },
-    ]  
+    this.TeamSummary=this.dashboadservice.getTeamDatils()
+    
+    this.TeamMember=this.dashboadservice.getTeamMember()
   }
 
   ChangeProject($event: any)
