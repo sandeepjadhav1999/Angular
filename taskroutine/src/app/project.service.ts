@@ -16,7 +16,7 @@ export class ProjectService {
   //   return this.httpClient.get<Project[]>("api/projects")
   // }
   
-    urlPrefix: string = "http://localhost:9090"; //make this as empty ("") if you are using asp.net core [without CORS]
+    urlPrefix: string = "http://localhost:3000"; //make this as empty ("") if you are using asp.net core [without CORS]
    
     constructor(private httpClient: HttpClient)
     {
@@ -24,8 +24,24 @@ export class ProjectService {
    
     getAllProject(): Observable<Project[]>
     {
-      return this.httpClient.get<Project[]>(this.urlPrefix + "/api/projects");
+      return this.httpClient.get<Project[]>(this.urlPrefix + "/projects");
     }
+
+    insertProject(newProject: Project): Observable<Project>
+    {
+      return this.httpClient.post<Project>(this.urlPrefix + "/projects", newProject);
+    }
+    
+
+    updateProject(editProject: Project): Observable<Project>
+    {
+      return this.httpClient.put<Project>(this.urlPrefix + "/projects/"+editProject.projectID, editProject);
+    }
+
+    deleteProject(ProjectID: number): Observable<string>
+  {
+    return this.httpClient.delete<string>(this.urlPrefix + "/projects/" + ProjectID);
+  }
   
 }
 
