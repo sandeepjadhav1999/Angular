@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from './login.service';
+// import { LoginService } from './login.service';
 
 
 @Component({
@@ -8,6 +8,6 @@ import { LoginService } from './login.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public loginservice:LoginService,){}
+  // constructor(public loginService:LoginService){}
   
 }

@@ -4,7 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { DashboardService } from '../dashboard.service';
-import { ProjectComponent } from './project/project.component';
+import { ProjectsComponent } from './projects/projects.component';
+
 import { FormsModule } from '@angular/forms';
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     AboutComponent,
     MyprofileComponent,
-    ProjectComponent
+    ProjectsComponent
+ 
   ],
   imports: [
     CommonModule, FormsModule
@@ -22,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     AboutComponent,
     MyprofileComponent,
-    ProjectComponent
+    ProjectsComponent
   ],
   providers:[DashboardService]
 
