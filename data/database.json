@@ -4,8 +4,27 @@
       "projectID": 1,
       "projectName": "project1",
       "dateOfStart": "2022-05-01",
-      "teamSize": "2",
+      "teamSize": "1",
       "id": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "userName": "admin",
+      "Email": "admin@gmail.com",
+      "Password": "Admin123#",
+      "role": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "UserName": "admin",
+      "id": 4
     }
   ]
 }
