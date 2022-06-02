@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit
 
   onLoginClick(event: any)
   {
+
     this.loginService.Login(this.loginViewModel).subscribe(
       (response) =>
       {
