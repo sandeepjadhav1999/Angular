@@ -10,10 +10,14 @@ import { LoginComponent } from './login/login.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+
+ 
 
 
   

@@ -4,9 +4,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { DashboardService } from '../dashboard.service';
-import { ProjectsComponent } from './projects/projects.component';
+
+
 
 import { FormsModule } from '@angular/forms';
+import { ProjectsComponent } from './projects/projects.component';
 
 
 @NgModule({
@@ -14,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     AboutComponent,
     MyprofileComponent,
-    ProjectsComponent
+    ProjectsComponent 
  
   ],
   imports: [
@@ -25,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     AboutComponent,
     MyprofileComponent,
     ProjectsComponent
+
   ],
   providers:[DashboardService]
 
