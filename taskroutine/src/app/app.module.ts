@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,6 +7,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { JwtInterceptorService } from './jwt-interceptor.service';
+import { JwtUnAuthorizedInterceptorService } from './jwt-authorized-interceptor.service';
 
 
 
@@ -15,13 +17,7 @@ import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-
- 
-
-
-  
-    
+    LoginComponent,  
   ],
   imports: [
     BrowserModule,
@@ -39,7 +35,18 @@ import { LoginComponent } from './login/login.component';
       }
     })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtUnAuthorizedInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

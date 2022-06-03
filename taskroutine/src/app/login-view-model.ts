@@ -1,2 +1,5 @@
-export class LoginViewModel {
+export class LoginViewModel
+{
+    UserName: string = "";
+    Password: string = "";
 }
