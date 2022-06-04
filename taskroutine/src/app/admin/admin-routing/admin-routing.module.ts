@@ -7,7 +7,7 @@ import { ProjectsComponent } from '../components/projects/projects.component';
 
 
 const routes:Routes=[
-  {path:"admin", canActivate: [ CanActivateGuardService ],data: { expectedRole: "Admin" },children:[
+  {path:"", canActivate: [ CanActivateGuardService ],data: { expectedRole: "Admin" },children:[
     {path:"dashboard",component:DashboardComponent},
     {path:"projects", component:ProjectsComponent }
   ]},

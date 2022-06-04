@@ -1,35 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AboutComponent } from './components/about/about.component';
 import { MyprofileComponent } from './components/myprofile/myprofile.component';
 import { DashboardService } from '../service/dashboard.service';
-import { ProjectIDUniqueValidatorDirective } from '../directives/project-idunique-validator.directive';
 import { ProjectComponent } from './components/project/project.component';
 import { FormsModule } from '@angular/forms';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    AboutComponent,
     MyprofileComponent,
     ProjectsComponent,
-    ProjectIDUniqueValidatorDirective ,
     ProjectComponent
  
   ],
   imports: [
-    CommonModule, FormsModule,AdminRoutingModule
+    CommonModule, FormsModule,AdminRoutingModule,SharedModule
   ],
   exports:[
     DashboardComponent,
-    AboutComponent,
     MyprofileComponent,
     ProjectsComponent,
-    ProjectIDUniqueValidatorDirective,
     ProjectComponent
 
   ],

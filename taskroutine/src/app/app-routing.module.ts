@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './admin/components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { CanActivateGuardService } from './guards/can-activate-guard.service';
@@ -13,6 +13,8 @@ const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path:"signup",component:SignUpComponent},
   {path:"about",component:AboutComponent},
+  {path:"admin",loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule)},
+  {path:"employee",loadChildren:()=>import("./employee/employee.module").then(m=>m.EmployeeModule)}
   
   
   
@@ -23,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true})],
+  imports: [RouterModule.forRoot(routes,{useHash:true,preloadingStrategy:PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

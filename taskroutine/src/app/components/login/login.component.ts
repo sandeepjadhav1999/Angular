@@ -26,7 +26,12 @@ export class LoginComponent implements OnInit
     this.loginService.Login(this.loginViewModel).subscribe(
       (response) =>
       {
-        this.router.navigate(["/admin","dashboard"]);
+        if(this.loginService.currentUserRole=="Admin"){
+          this.router.navigate(["/admin","dashboard"]);
+        }else{
+          this.router.navigate(["/employee","tasks"]);
+        }
+        
       },
       (error) =>
       {
