@@ -6,9 +6,13 @@ import { AdminModule } from './admin/admin.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { JwtInterceptorService } from './jwt-interceptor.service';
-import { JwtUnAuthorizedInterceptorService } from './jwt-authorized-interceptor.service';
+import { LoginComponent } from './components/login/login.component';
+import { JwtInterceptorService } from './service/jwt-interceptor.service';
+import { JwtUnAuthorizedInterceptorService } from './service/jwt-authorized-interceptor.service';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { EmployeeModule } from './employee/employee.module';
+
+
 
 
 
@@ -17,12 +21,15 @@ import { JwtUnAuthorizedInterceptorService } from './jwt-authorized-interceptor.
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,  
+    LoginComponent,
+    SignUpComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AdminModule,
+    EmployeeModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

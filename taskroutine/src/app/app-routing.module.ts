@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { AboutComponent } from './admin/about/about.component';
-import { ProjectsComponent } from './admin/projects/projects.component';
-import { LoginComponent } from './login/login.component';
-import { CanActivateGuardService } from './can-activate-guard.service';
+import { AboutComponent } from './admin/components/about/about.component';
+import { LoginComponent } from './components/login/login.component';
+import { CanActivateGuardService } from './guards/can-activate-guard.service';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+
 
 
 
 const routes: Routes = [
   {path:"",redirectTo:"login",pathMatch:"full"},
   {path:"login",component:LoginComponent},
-  {path:"dashboard",component:DashboardComponent, canActivate: [ CanActivateGuardService ],data: { expectedRole: "Admin" } },
+  {path:"signup",component:SignUpComponent},
   {path:"about",component:AboutComponent},
-  {path:"projects", component:ProjectsComponent, canActivate: [ CanActivateGuardService ],data: { expectedRole: "Admin" } }
+  
+  
+  
+  
+ 
 
 
 ];

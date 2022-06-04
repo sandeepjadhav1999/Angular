@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginViewModel } from '../login-view-model';
-import { LoginService } from '../login.service';
+import { LoginViewModel } from 'src/app/models/login-view-model';
+import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit
     this.loginService.Login(this.loginViewModel).subscribe(
       (response) =>
       {
-        this.router.navigateByUrl("/dashboard");
+        this.router.navigate(["/admin","dashboard"]);
       },
       (error) =>
       {

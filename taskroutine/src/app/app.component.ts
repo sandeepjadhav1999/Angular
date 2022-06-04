@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { LoginService } from './login.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { LoginService } from './service/login.service';
+import { RouterLoggerService } from './service/router-logger.service';
 
 
 
@@ -11,8 +13,21 @@ import { LoginService } from './login.service';
 })
 export class AppComponent {
   
-  constructor(public loginService: LoginService, private domSanitizer:DomSanitizer)
+  constructor(public loginService: LoginService, private domSanitizer:DomSanitizer,
+    private routerLoggerService:RouterLoggerService,private router: Router)
   {
+  }
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        let userName = (this.loginService.currentUserName) ? this.loginService.currentUserName : "anonymous";
+
+        let logMsg = new Date().toLocaleString() + ": " + userName + " navigates to " + event.url;
+
+        this.routerLoggerService.log(logMsg).subscribe();
+      }
+    });
   }
 
   
