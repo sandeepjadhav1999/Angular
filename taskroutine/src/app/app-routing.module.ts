@@ -25,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true,preloadingStrategy:PreloadAllModules})],
+  imports: [RouterModule.forRoot(routes,{useHash:true,preloadingStrategy:PreloadAllModules})], //userHash helps in the navigation even if the url is copied in dfferent browswer
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

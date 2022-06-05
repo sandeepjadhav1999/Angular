@@ -9,14 +9,13 @@ function getProjects(req, res) {
   res.send(helpers.toCamel(projects));
 }
 
+
+
+
 //POST api/projects
 function postProjects(req, res) {
   console.log(req.method, req.url);
   projects = JSON.parse(fs.readFileSync(jsonfile)).projects;
-
-    if (req.body.clientLocationID)
-    req.body.clientLocation = JSON.parse(fs.readFileSync(jsonfile)).clientLocations.find(c => c.clientLocationID == req.body.clientLocationID);
-
   projects.push(req.body);
   console.log("Response: ", projects);
   fs.writeFileSync(

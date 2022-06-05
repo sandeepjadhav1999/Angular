@@ -21,6 +21,14 @@ export class LoginService
   currentUserName: any = null;
   currentUserRole:any=null
 
+  public detectLoggedin(){
+    if(this.jwtHelperService.isTokenExpired()==false){
+      var currentUser= JSON.parse(sessionStorage['currentUser'])
+      this.currentUserName=currentUser.currentUserName
+      this.currentUserRole=currentUser.currentUserRole
+    }
+  }
+
   public Login(loginViewModel: LoginViewModel): Observable<any>
   {
     this.httpClient = new HttpClient(this.httpBackend);
@@ -64,6 +72,11 @@ export class LoginService
   {
     sessionStorage.removeItem("currentUser");
     this.currentUserName = null;
+  }
+
+  public getAllEmployee():Observable<any>{
+    this.httpClient=new HttpClient(this.httpBackend)
+    return this.httpClient.get<any>(this.urlPrefix+"/api/getallemployees",{responseType:"json"})
   }
 
   public isAuthenticated(): boolean

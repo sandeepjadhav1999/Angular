@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit
 {
-  loginViewModel: LoginViewModel = new LoginViewModel();
+  loginViewModel: LoginViewModel = new LoginViewModel();   //creating a new object of loginViewModel 
   loginError: string = "";
 
   constructor(private loginService: LoginService, private router: Router) 
@@ -24,9 +24,9 @@ export class LoginComponent implements OnInit
   onLoginClick(event: any)
   {
     this.loginService.Login(this.loginViewModel).subscribe(
-      (response) =>
+      (response) =>     //response contians the Username Password n role
       {
-        if(this.loginService.currentUserRole=="Admin"){
+        if(this.loginService.currentUserRole=="Admin"){   
           this.router.navigate(["/admin","dashboard"]);
         }else{
           this.router.navigate(["/employee","tasks"]);

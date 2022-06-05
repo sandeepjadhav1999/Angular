@@ -11,6 +11,10 @@ var helpers = require("./helpers");
 var users = require("./projects");
 var clientlocations = require("./clientlocations");
 var countries = require("./countries");
+var taskpriorities = require("./taskpriorities");
+var taskstatuses = require("./taskstatuses");
+
+
 
 app.listen(9090, startup);
 function startup() {
@@ -85,6 +89,8 @@ app.get(
   users.getProjectByProjectID
 );
 
+
+
 //GET api/clientlocations
 app.get(
   "/api/clientlocations",
@@ -113,14 +119,198 @@ app.delete(
   clientlocations.deleteClientLocations
 );
 
+//GET /api/clientlocations/searchbyclientlocationid/:ClientLocationID
+app.get(
+  "/api/clientlocations/searchbyclientlocationid/:ClientLocationID",
+  [authenticateToken],
+  clientlocations.searchByClientLocationID
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //GET api/countries
 app.get("/api/countries", countries.getCountries);
+
+//POST api/countries
+app.post(
+  "/api/countries",
+  [authenticateToken],
+  countries.postCountries
+);
+
+//PUT api/countries
+app.put(
+  "/api/countries",
+  [authenticateToken],
+  countries.putCountries
+);
+
+//DELETE api/countries
+app.delete(
+  "/api/countries",
+  [authenticateToken],
+  countries.deleteCountries
+);
+
+//GET api/countries/search/:searchby/:searchtext
+app.get(
+  "/api/countries/search/:searchby/:searchtext",
+  [authenticateToken],
+  countries.searchCountries
+);
+
+//GET /api/projects/searchbycountryid/:CountryID
+app.get(
+  "/api/countries/searchbycountryid/:CountryID",
+  [authenticateToken],
+  countries.searchByCountryID
+);
+
+
+
+//GET api/taskpriorities
+app.get(
+  "/api/taskpriorities",
+  [authenticateToken],
+  taskpriorities.getTaskPriorities
+);
+
+//POST api/taskpriorities
+app.post(
+  "/api/taskpriorities",
+  [authenticateToken],
+  taskpriorities.postTaskPriorities
+);
+
+//PUT api/taskpriorities
+app.put(
+  "/api/taskpriorities",
+  [authenticateToken],
+  taskpriorities.putTaskPriorities
+);
+
+//DELETE api/taskpriorities
+app.delete(
+  "/api/taskpriorities",
+  [authenticateToken],
+  taskpriorities.deleteTaskPriorities
+);
+
+//GET /api/taskpriorities/searchbytaskpriorityid/:TaskPriorityID
+app.get(
+  "/api/taskpriorities/searchbytaskpriorityid/:TaskPriorityID",
+  [authenticateToken],
+  taskpriorities.searchByTaskPriorityID
+);
+
+
+
+
+//GET api/taskstatuses
+app.get(
+  "/api/taskstatuses",
+  [authenticateToken],
+  taskstatuses.getTaskStatuses
+);
+
+//POST api/taskstatuses
+app.post(
+  "/api/taskstatuses",
+  [authenticateToken],
+  taskstatuses.postTaskStatuses
+);
+
+//PUT api/taskstatuses
+app.put(
+  "/api/taskstatuses",
+  [authenticateToken],
+  taskstatuses.putTaskStatuses
+);
+
+//DELETE api/taskstatuses
+app.delete(
+  "/api/taskstatuses",
+  [authenticateToken],
+  taskstatuses.deleteTaskStatuses
+);
+
+//GET /api/taskstatuses/searchbytaskstatusid/:TaskStatusID
+app.get(
+  "/api/taskstatuses/searchbytaskstatusid/:TaskStatusID",
+  [authenticateToken],
+  taskstatuses.searchByTaskStatusID
+);
+
+
 
 //post api/routerlogger
 app.post("/api/routerlogger", function (req, res) {
   console.log(req.body);
   res.end();
 });
+
+//GET/employees
+app.get("/api/getallemployees",function(req,res){
+  console.log(req.method,req.url);
+  users=JSON.parse(fs.readFileSync(jsonfile)).users
+  console.log("Response: ", users)
+  res.send(helpers.toCamel(users));
+
+})
+
+
+app.get("/api/tasks",function(req,res){
+  console.log(req.method,req.url);
+  users=JSON.parse(fs.readFileSync(jsonfile)).users
+  console.log("Response: ", users)
+  res.send(helpers.toCamel(users));
+
+})
+
+
+
+
+
+
+//POST/task
+app.post("/api/createtask",function(req, res) {
+  console.log(req.method, req.url);
+  tasks = JSON.parse(fs.readFileSync(jsonfile)).tasks;
+  tasks.push(req.body);
+  console.log("Response: ", tasks);
+  fs.writeFileSync(
+    jsonfile,
+    JSON.stringify({
+      ...JSON.parse(fs.readFileSync(jsonfile)),
+      tasks: tasks,
+    }),
+    "utf8"
+  );
+  res.send(helpers.toCamel(req.body));
+})
+
+
+
 
 //POST /register
 app.post("/register", function (req, res) {
@@ -169,6 +359,22 @@ app.post("/register", function (req, res) {
 
 //GET /api/getUserByEmail/:Email
 app.get("/api/getUserByEmail/:Email", function (req, res) {
+  console.log(req.method, req.url);
+  console.log(req.params);
+  users = JSON.parse(fs.readFileSync(jsonfile, "utf8")).users;
+  users = users.find((project) => {
+    return project["Email"] == req.params.Email;
+  });
+  console.log("Response: ", users);
+  if (users) {
+    res.send(helpers.toCamel(users));
+  } else {
+    res.send(users);
+  }
+});
+
+
+app.get("/api/getUserByEmail/", function (req, res) {
   console.log(req.method, req.url);
   console.log(req.params);
   users = JSON.parse(fs.readFileSync(jsonfile, "utf8")).users;
