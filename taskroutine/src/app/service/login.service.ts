@@ -12,7 +12,7 @@ import { SignUpViewModel } from '../models/sign-up-view-model';
 export class LoginService
 {
   private httpClient: HttpClient | null = null;
-  urlPrefix: string = "http://localhost:9090"; //make this as empty ("") if you are using asp.net core [without CORS]
+  urlPrefix: string = "http://localhost:9090"; 
 
   constructor(private httpBackend: HttpBackend, private jwtHelperService: JwtHelperService)
   {
