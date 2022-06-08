@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(){
     this.jobRole="Manager"
-    this.UserName="Basu",
+    this.UserName="Basavaraj Juttiyavar",
     this.TeamMembers=4,
     this.PendingTask=4,
     this.UpcompingProject=0,
