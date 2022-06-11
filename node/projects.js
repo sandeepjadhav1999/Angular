@@ -10,6 +10,61 @@ function getProjects(req, res) {
 }
 
 
+//get task
+function getTasks(req, res) {
+  console.log(req.method, req.url);
+  tasks = JSON.parse(fs.readFileSync(jsonfile, "utf8")).tasks
+  console.log("Response: ", tasks);
+  res.send(helpers.toCamel(tasks));
+}
+
+
+//put task
+function putTask(req, res) {
+  console.log(req.method, req.url);
+  tasks = JSON.parse(fs.readFileSync(jsonfile)).tasks;
+  tasks = tasks.map((tasks) => {
+    if (tasks.taskName == req.body.taskName) {
+      
+      return req.body;  
+    } else {
+      return tasks;
+    }
+  })
+  console.log("Response: ", tasks);
+  fs.writeFileSync(
+    jsonfile,
+    JSON.stringify({
+      ...JSON.parse(fs.readFileSync(jsonfile)),
+      tasks: tasks,
+    }),
+    "utf8"
+  );
+  res.send(helpers.toCamel(req.body));
+}
+
+
+//get task by taskName
+function getTaskbyTaskName(req, res) {
+  console.log(req.method, req.url);
+  console.log(req.params);
+  tasks = JSON.parse(fs.readFileSync(jsonfile, "utf8")).tasks;
+  tasks=tasks.find((tasks)=>{
+    if(tasks.taskName==req.params.taskName ){
+      return tasks
+    }
+  })
+  console.log("Response: ", tasks);
+  res.send(helpers.toCamel(tasks));
+
+
+  
+}
+
+
+
+
+
 
 
 //POST api/projects
@@ -116,3 +171,6 @@ exports.putProjects = putProjects;
 exports.deleteProjects = deleteProjects;
 exports.searchProjects = searchProjects;
 exports.getProjectByProjectID = getProjectByProjectID;
+exports.getTasks=getTasks
+exports.putTask=putTask
+exports.getTaskbyTaskName=getTaskbyTaskName

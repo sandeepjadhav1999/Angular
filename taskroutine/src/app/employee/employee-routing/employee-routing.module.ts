@@ -11,7 +11,7 @@ const routes:Routes=[
   {path:"",canActivate: [ CanActivateGuardService ],data: { expectedRole: "Employee" },children:[
     {path:"tasks",component:TasksComponent,data:{linkIndex:1} },
     {path:"createtask",component:CreateTaskComponent,data:{linkIndex:2}},
-    {path:"edittask/:taskid",component:EditTaskComponent,data:{linkIndex:3}},
+    {path:"edittask/:taskName",component:EditTaskComponent,data:{linkIndex:3}},
     {path:"updatetaskstatus/:taskid",component:UpdateTaskStatusComponent,data:{linkIndex:4}}
   ]}
 

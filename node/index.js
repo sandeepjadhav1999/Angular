@@ -60,6 +60,16 @@ function verifyXsrf(req, res, next) {
   next();
 }
 
+//get tasks
+app.get("/api/tasks",users.getTasks)
+
+//put Task 
+app.put("/api/tasks",users.putTask)
+
+
+//get taskName
+app.get("/api/tasks/:taskName",users.getTaskbyTaskName)
+
 //GET api/projects
 app.get("/api/projects", [authenticateToken], users.getProjects);
 
@@ -139,13 +149,7 @@ app.get("/api/getallemployees",function(req,res){
 })
 
 
-app.get("/api/tasks",function(req,res){
-  console.log(req.method,req.url);
-  users=JSON.parse(fs.readFileSync(jsonfile)).users
-  console.log("Response: ", users)
-  res.send(helpers.toCamel(users));
 
-})
 
 
 

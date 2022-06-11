@@ -23,6 +23,7 @@ export class CreateTaskComponent implements OnInit
   constructor(private tasksService: TasksService, private router: Router, private projectsService: ProjectsService,  public loginService: LoginService)
   {
   }
+  currentUser:any=this.loginService.currentUserName
 
   ngOnInit()
   {
@@ -32,7 +33,8 @@ export class CreateTaskComponent implements OnInit
       description: new FormControl(null, []),
       projectID: new FormControl(null, [ Validators.required ]),
       assignedTo: new FormControl(null, [ Validators.required ]),
-      createdBy:new FormControl(null, [ Validators.required ]),
+      createdBy:new FormControl(this.currentUser, [ Validators.required ]),
+      lastUpdatedOn:new FormControl([])
 
     });
 
