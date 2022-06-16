@@ -1,5 +1,5 @@
 <h1>Tasks</h1>
-<a [routerLink]=" [ '/employee', 'createtask' ] " class="btn btn-primary">Create Task</a>
+<a [routerLink]=" [ '/employee', 'createtask' ] " class="btn btn-primary">Create Task</a>  
 <div class="row mt-1 mb-2">
     <div class="col-lg-6 mb-1" *ngFor="let tasks of tasks">
         <div class="card card-primary">
@@ -27,16 +27,18 @@
                                 {{tasks.assignedTo}}
                             </td>
                         </tr>
+                        <div style="margin-top: 10px;" >
+                        </div>
                         <tr >
-                            <td>last Update :</td>
+                            <td><b>last Update :</b></td>
                             <td>
                                 <i class="fa-solid fa-list-check"></i>
-                                {{tasks.lastUpdatedOn}}</td>
+                                <b> {{tasks.lastUpdatedOn}}</b></td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer"> 
                 <div class="btn btn-primary" *ngIf="tasks.assignedTo == loginService.currentUserName">
                     <a [routerLink]="['/employee','edittask',tasks.taskName]" style="color: white;"  >Update</a>
                 </div>  

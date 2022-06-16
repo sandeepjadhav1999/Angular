@@ -136,11 +136,14 @@ function deleteProjects(req, res) {
 function searchProjects(req, res) {
   console.log(req.method, req.url);
   projects = JSON.parse(fs.readFileSync(jsonfile, "utf8")).projects;
-  req.params.searchtext = (req.params.searchtext || "").toUpperCase();
-  req.params.searchby = helpers.toCamelCase(req.params.searchby || "");
+  console.log(req.params)
+  req.params.searchtext = (req.params.searchtext );
+  console.log(req.params.searchtext)
+  req.params.searchby = helpers.toCamelCase(req.params.searchby);
+  console.log(req.params.searchby)
   console.log(req.params);
   projects = projects.filter((project) => {
-    value = String(project[req.params.searchby] || "").toUpperCase();
+    value = String(project[req.params.searchby] );
     return value.indexOf(req.params.searchtext) >= 0;
   });
 

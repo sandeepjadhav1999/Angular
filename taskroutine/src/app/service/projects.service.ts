@@ -21,10 +21,10 @@ export class ProjectsService
       .pipe(map(
         (data: Project[]) =>
         {
-          for (let i = 0; i < data.length; i++)
-          {
-            //data[i].teamSize = data[i].teamSize * 100;
-          }
+          // for (let i = 0; i < data.length; i++)
+          // {
+          //   //data[i].teamSize = data[i].teamSize * 100;
+          // }
           return data;
         }
       ));

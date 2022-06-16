@@ -15,7 +15,7 @@ import { LoginViewModel } from 'src/app/models/login-view-model';
 })
 export class CreateTaskComponent implements OnInit
 {
-  newTaskForm: FormGroup|any;
+  newTaskForm: FormGroup|any;    
   projects: Observable<Project[]>;
   employees: Observable<any>;
   assign:Observable<LoginViewModel[]>
@@ -27,7 +27,7 @@ export class CreateTaskComponent implements OnInit
 
   ngOnInit()
   {
-    this.newTaskForm = new FormGroup({
+    this.newTaskForm = new FormGroup({     //get the form details 
       taskID: new FormControl(0),
       taskName: new FormControl(null, [ Validators.required ]),
       description: new FormControl(null, []),
@@ -38,20 +38,20 @@ export class CreateTaskComponent implements OnInit
 
     });
 
-    this.projects = this.projectsService.getAllProjects();
-    this.employees = this.loginService.getAllEmployee()
+    this.projects = this.projectsService.getAllProjects(); //geting all the projects list
+    this.employees = this.loginService.getAllEmployee() //getting all the employee list
   }
 
   onCreateTaskClick(event:any)
   {
     this.newTaskForm["submitted"] = true;
 
-    if (this.newTaskForm.valid)
+    if (this.newTaskForm.valid)          
     {
       this.tasksService.insertTask(this.newTaskForm.value).subscribe(() => {
-        this.router.navigate( [ "/employee", "tasks" ]);
-      }, (error) => {
-        console.log(error);
+        this.router.navigate( [ "/employee", "tasks" ]); //calling the intersert task method from 
+      }, (error) => {     //task service and subscribing. on successfully inserting the details              
+        console.log(error);  //navigating to the task page (task.component)
       });
     }
     else

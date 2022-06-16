@@ -20,17 +20,17 @@ export class EditTaskComponent implements OnInit {
 
   constructor(private taskService:TasksService, private router:Router, private activeRoute:ActivatedRoute) { }
 
-  projectID=this.currentTask.projectID
+  projectID=this.currentTask.projectID    
   ngOnInit() {
-    this.activeRoute.params.subscribe((params)=>{
-      this.taskName=params['taskName']
-      console.log(this.taskName)
+    this.activeRoute.params.subscribe((params)=>{   //get the task details of the specified task
+      this.taskName=params['taskName']  //making use of activate route to get the task name 
+      console.log(this.taskName)      //storing the task Name in the taskName
     })
 
-    this.taskService.getTaskbyTaskName(this.taskName).subscribe(
-      (response)=>{
-        this.currentTask=response
-      }
+    this.taskService.getTaskbyTaskName(this.taskName).subscribe(    //calling the gettaskbytaskName
+      (response)=>{               //fr the task service and sending the taskName as a parameter 
+        this.currentTask=response  //and subscribing to the response
+      }        //response contains the task details
     )
     
     this.newTaskForm = new FormGroup({
@@ -52,9 +52,9 @@ export class EditTaskComponent implements OnInit {
 
     if (this.newTaskForm.valid)
     {
-      this.taskService.updateTask(this.newTaskForm.value).subscribe(() => {
-        this.router.navigate( [ "/employee", "tasks" ]);
-      }, (error) => {
+      this.taskService.updateTask(this.newTaskForm.value).subscribe(() => { //calling the updatetask method
+        this.router.navigate( [ "/employee", "tasks" ]);   //once the form is valid and its successfully 
+      }, (error) => {               //updated than we are redirected to the task page(tasks.component)
         console.log(error);
       });
     }

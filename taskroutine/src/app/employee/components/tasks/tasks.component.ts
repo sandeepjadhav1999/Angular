@@ -10,22 +10,16 @@ import { TasksService } from 'src/app/service/tasks.service';
 })
 export class TasksComponent implements OnInit {
 
-  tasks:Task[]
-  
-  
-  
+  tasks:Task[] 
 
   constructor(private taskservice:TasksService, public loginService:LoginService) { }
   ngOnInit() {
-    this.taskservice.getTask().subscribe(
-      (response:Task[])=>{
-        this.tasks=response
+    this.taskservice.getTask().subscribe(    //calling the getTask method from the taskService and 
+      (response:Task[])=>{                //and subscribing to the response
+        this.tasks=response                 //storing the response data in the tasks
         console.log(this.tasks)
       }
     )
     
-  }
-
-
-  
+  }  
 }
